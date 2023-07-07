@@ -36,7 +36,6 @@ public class Quadrant {
         this.width = width;
         this.height = height;
         this.center = new Vecc2f(this.position.x + (width / (2)), this.position.y + (height / (2)));
-
     }
 
 
@@ -61,12 +60,11 @@ public class Quadrant {
 
         ArrayList<Point> found = new ArrayList<>();
 
-
         if (!rectangle.intersects(this.position.x, this.position.y, width, height)) {
             return new ArrayList<>();
         } else {
             for (Point point : points) {
-                if (point.rec.getBoundsInParent().intersects(rectangle.getBoundsInParent())) {
+                if (rectangle.contains(point.x,point.y)) {
                     found.add(point);
                 }
             }
@@ -75,10 +73,8 @@ public class Quadrant {
                 found.addAll(this.bottomLeft.find(rectangle));
                 found.addAll(this.bottomRight.find(rectangle));
                 found.addAll(this.topRight.find(rectangle));
-
             }
         }
-
         return found;
     }
 
@@ -86,7 +82,6 @@ public class Quadrant {
         if (!contains(p)) {
             return false;
         }
-
         if (this.points.size() < this.capacity) {
             this.points.add(p);
             return true;

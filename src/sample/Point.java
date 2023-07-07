@@ -17,6 +17,6 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
-        this.rec = new Rectangle(x, y, 2, 2);
+        this.rec = new Rectangle(x, y, 1, 1);
     }
 }
